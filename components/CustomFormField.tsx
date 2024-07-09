@@ -15,16 +15,27 @@ import { FormFieldType } from "./Forms/PatientForm";
 interface CustomProps {
   control: Control<any>;
   fieldType: FormFieldType;
+  name: string;
+  label?: string;
+  placeHolder?: string;
+  iconSrc?: string;
+  iconAlt?: string;
+  disabled?: boolean;
+  dateFormat?: string;
+  showTimeSelect?: boolean;
+  children?: React.ReactNode;
+  renderSkeleton?: (field: any) => React.ReactNode;
 }
-const CustomFormField = ({ control, fieldType, name }: CustomProps) => {
+const CustomFormField = ({ control, fieldType, name, label }: CustomProps) => {
   return (
     <FormField
       control={control}
       name="name"
       render={({ field }) => (
         <FormItem>
-          {fieldType !== FormFieldType.CHECKBOX &&
-            label(<FormLabel>{label}</FormLabel>)}
+          {fieldType !== FormFieldType.CHECKBOX && label && (
+            <FormLabel>{label}</FormLabel>
+          )}
         </FormItem>
         // <FormItem>
         //   <FormLabel>Full Name</FormLabel>
