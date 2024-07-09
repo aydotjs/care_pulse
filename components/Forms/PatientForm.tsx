@@ -9,6 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
 
+export enum FormFieldType{
+  INPUT = "input"
+  TEXTAREA = "textarea"
+  PHONE_INPUT = "phoneInput"
+  CHECKBOX = "CHECKOBOX"
+}
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -23,8 +29,9 @@ const PatientForm = () => {
     },
   });
 
+ 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  
   }
 
   return (
@@ -34,7 +41,16 @@ const PatientForm = () => {
           <h1 className="header">Hi There 👋</h1>
           <p className="text-dark-700">Schedule your appointment</p>
         </section>
-        <CustomFormField control={form.control} />
+        <CustomFormField 
+        fieldType={FormFieldType.INPUT}
+        control={form.control}
+        name="name"
+        label = "Full Name"
+        placeHolder = "John Doe"
+        iconSrc = "/assets/icons/users.svg"
+        iconAlt = "user"
+
+         />
         <Button type="submit">Submit</Button>
       </form>
     </Form>
